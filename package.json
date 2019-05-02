@@ -4,14 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon index.js",
+    "test": "cross-env DB_ENV=testing jest --watch --verbose",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "helmet": "^3.16.0",
     "knex": "^0.16.5",
     "pg": "^7.10.0",
     "sqlite3": "^4.0.6"
