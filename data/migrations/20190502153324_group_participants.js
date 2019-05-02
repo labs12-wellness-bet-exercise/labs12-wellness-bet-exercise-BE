@@ -3,9 +3,6 @@ exports.up = function(knex, Promise) {
     return knex.schema.createTable('group_participants', table => {
         table.increments(); 
     
-        table.string("group_name")
-        .notNullable();
-    
         table.integer("user_id")
         .unsigned()
         .notNullable()
