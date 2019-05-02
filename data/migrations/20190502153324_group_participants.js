@@ -20,14 +20,14 @@ exports.up = function(knex, Promise) {
         .onUpdate('CASCADE'); 
     
         table.boolean("paid")
-        .toDefault(false)
+        .defaultTo(false)
         .notNullable();
     
         table.string('venmoPhoto')
         .notNullable(); 
 
         table.boolean("admin")
-        .toDefault(false)
+        .defaultTo(false)
         .notNullable();
     
     })
