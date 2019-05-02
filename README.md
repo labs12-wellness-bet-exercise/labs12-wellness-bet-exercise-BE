@@ -4,14 +4,14 @@
 
  ** users table
 
-    | name of field | data type | notes |
-    | ------------- |:-------------:| -----:|
-    | id | integer | auto-generated |
-    | full_name | string/varchar | character limit: 255 | 
-    | password | string/varchar |  character limit: 255  | 
-    | email | string/varchar | character limit: 255  | 
-    | profilePhoto | string/varchar | character limit: 255  |
-    | created_at | timestamp/date | defaults to now |  
+| name of field | data type | notes |
+| ------------- |:-------------:| -----:|
+| id | integer | auto-generated |
+| full_name | varchar | character limit: 255 | 
+| password | varchar |  character limit: 255 | 
+| email | varchar | character limit: 255 | 
+| profilePhoto | varchar | character limit: 255 |
+| created_at | timestamp/date | defaults to now |  
 
  ** group_participants table 
 
