@@ -3,6 +3,7 @@
 
 
  ** users table
+
     | name of field | data type | notes |
     | ------------- |:-------------:| -----:|
     | id | integer | auto-generated |
@@ -23,5 +24,5 @@
   | admin | boolean | defaults to false | 
   | venmoPhoto | string/varchar | character limit: 255 | 
 
-  
+
  
