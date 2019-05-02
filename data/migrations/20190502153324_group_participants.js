@@ -27,6 +27,10 @@ exports.up = function(knex, Promise) {
         .notNullable();
     
         table.string('venmoPhoto')
+        .notNullable(); 
+
+        table.boolean("admin")
+        .toDefault(false)
         .notNullable();
     
     })
