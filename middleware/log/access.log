@@ -2,3 +2,6 @@
 ::1 - - [03/May/2019:05:50:25 +0000] "GET /api/users HTTP/1.1" 200 837 "-" "PostmanRuntime/7.11.0"
 ::1 - - [03/May/2019:05:57:50 +0000] "GET /api/users/1 HTTP/1.1" 200 231 "-" "PostmanRuntime/7.11.0"
 ::1 - - [03/May/2019:06:41:10 +0000] "GET /api/groups HTTP/1.1" 200 678 "-" "PostmanRuntime/7.11.0"
+::1 - - [03/May/2019:06:57:27 +0000] "GET /api/groups/2 HTTP/1.1" 200 227 "-" "PostmanRuntime/7.11.0"
+::1 - - [03/May/2019:13:25:33 +0000] "GET /api/groups/2 HTTP/1.1" 200 227 "-" "PostmanRuntime/7.11.0"
+::1 - - [03/May/2019:13:25:44 +0000] "GET /api/groups/ HTTP/1.1" 200 678 "-" "PostmanRuntime/7.11.0"
