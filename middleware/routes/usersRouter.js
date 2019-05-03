@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../helpers/helpers.js');
+const db = require('../../helpers/userHelpers');
 
 router.get('/', (req, res) => {
   db.find()

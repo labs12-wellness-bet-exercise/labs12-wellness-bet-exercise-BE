@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const rfs = require('rotating-file-stream');
 const path = require('path');
 const dir = './middleware';
-const users = require('./routes/users')
+const users = require('./routes/usersRouter')
 
 const accessLogStream = rfs('access.log', {
   interval: '1d', // rotate daily

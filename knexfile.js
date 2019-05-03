@@ -22,7 +22,7 @@ module.exports = {
       directory: "./data/migrations"
     },
     seeds: {
-      diirectory: "./data/seeds"
+      diirectory: './data/seeds'
     }
   },
   testing: {
