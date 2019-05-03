@@ -1,19 +1,19 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("group_participants", table => {
-    table.increments();
+    table.increments("group_participants_id");
 
     table
       .integer("user_id")
       .unsigned()
       .notNullable()
-      .references("id")
+      .references("user_id")
       .inTable("users");
 
     table
       .integer("group_id")
       .unsigned()
       .notNullable()
-      .references("id")
+      .references("group_id")
       .inTable("groups");
 
     table

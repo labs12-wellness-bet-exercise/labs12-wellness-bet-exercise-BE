@@ -14,3 +14,4 @@
 ::1 - - [03/May/2019:14:52:19 +0000] "GET /api/groups/1 HTTP/1.1" 200 226 "-" "PostmanRuntime/7.11.0"
 ::1 - - [03/May/2019:15:14:41 +0000] "GET /api/groups/1/ HTTP/1.1" 200 - "-" "PostmanRuntime/7.11.0"
 ::1 - - [03/May/2019:15:15:50 +0000] "GET /api/groups/1/ HTTP/1.1" 200 - "-" "PostmanRuntime/7.11.0"
+::1 - - [03/May/2019:19:31:33 +0000] "GET /api/users HTTP/1.1" 200 837 "-" "insomnia/6.3.2"

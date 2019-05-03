@@ -21,7 +21,7 @@ module.exports = {
       directory: "./data/migrations"
     },
     seeds: {
-      diirectory: "./data/seeds"
+      directory: "./data/seeds"
     }
   },
   testing: {
@@ -34,7 +34,7 @@ module.exports = {
       directory: "./data/migrations"
     },
     seeds: {
-      diirectory: "./data/seeds"
+      directory: "./data/seeds"
     }
   },
   // Easiest to add this after deployment
