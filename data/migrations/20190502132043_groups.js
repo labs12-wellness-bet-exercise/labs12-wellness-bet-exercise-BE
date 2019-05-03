@@ -5,8 +5,6 @@ exports.up = function(knex, Promise) {
     // table.integer("id")
     // .notNullable();
 
-    table.integer("user_id").notNullable();
-
     table.string("group_name").notNullable();
 
     table.float("buy_in_amount").notNullable();
