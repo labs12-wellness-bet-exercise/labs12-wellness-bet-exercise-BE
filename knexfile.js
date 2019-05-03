@@ -4,7 +4,7 @@
 localPgConnection = {
   host: "localhost",
   database: "wellness",
-  user: "team wombat",
+  user: "lydia",
   password: "pass"
 };
 
