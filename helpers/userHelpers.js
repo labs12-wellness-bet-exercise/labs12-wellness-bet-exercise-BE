@@ -13,7 +13,7 @@ function find() {
 }
 
 function findById(id) {
-  return db('users').where({ id: Number(id) });
+  return db('users').where({ user_id: Number(id) });
 }
 
 function insert(user) {
