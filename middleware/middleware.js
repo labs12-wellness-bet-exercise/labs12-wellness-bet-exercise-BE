@@ -5,7 +5,8 @@ const rfs = require('rotating-file-stream');
 const path = require('path');
 const dir = './middleware';
 const users = require('./routes/usersRouter');
-const groups = require('./routes/groupsRouter')
+const groups = require('./routes/groupsRouter');
+const participants = require('./routes/participantsRouter');
 
 const accessLogStream = rfs('access.log', {
   interval: '1d', // rotate daily
@@ -18,6 +19,7 @@ module.exports = server => {
   server.use(morgan('combined', {
     stream: accessLogStream
   }));
-  server.use('/api/users', users)
-  server.use('/api/groups', groups)
+  server.use('/api/users', users);
+  server.use('/api/groups', groups);
+  server.use('/api/participants', participants);
 }

@@ -18,7 +18,7 @@ function findById(id) {
 
 function insert(group) {
   return db('groups')
-    .insert(user)
+    .insert(group)
     .then(ids => ({ id: ids[0] }));
 }
 
