@@ -19,7 +19,7 @@ exports.seed = async function(knex, Promise) {
   // await knex("users").insert(fakeUsers);
 
   return knex("users")
-    .truncate()
+    .del()
     .then(function() {
       // Inserts seed entries
       return knex("users").insert([
