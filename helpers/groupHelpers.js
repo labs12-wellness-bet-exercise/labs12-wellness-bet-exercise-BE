@@ -1,4 +1,5 @@
 const db = require('../data/dbConfig.js')
+const mappers = require('./mappers')
 
 module.exports = {
   find,
@@ -6,6 +7,7 @@ module.exports = {
   insert,
   update,
   remove,
+  getGroupParticipants
 };
 
 function find() {
@@ -14,6 +16,16 @@ function find() {
 
 function findById(id) {
   return db('groups').where({ id: Number(id) });
+}
+
+function getGroupParticipants(group_id) {
+  return db('group_participants')
+    .where('group_id', group_id)
+    .then(participants => {
+      participants.map(participant => {
+        participant
+      })
+    })
 }
 
 function insert(group) {
