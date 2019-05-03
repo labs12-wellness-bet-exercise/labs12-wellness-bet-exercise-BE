@@ -12,10 +12,10 @@ exports.up = function(knex, Promise) {
 
     table.string("profilePhoto").notNullable();
 
-    table
-      .timestamp("created_at")
-      .defaultTo(knex.fn.now())
-      .notNullable();
+    // table
+    //   .timestamp("created_at")
+    //   .defaultTo(knex.fn.now())
+    //   .notNullable();
   });
 };
 
