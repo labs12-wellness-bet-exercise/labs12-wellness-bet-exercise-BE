@@ -1,3 +1,5 @@
+const db = require('../data/dbConfig.js')
+
 module.exports = {
   find,
   findById,
@@ -11,23 +13,23 @@ function find() {
 }
 
 function findById(id) {
-  return db('notes').where({ id: Number(id) });
+  return db('users').where({ id: Number(id) });
 }
 
-function insert(note) {
-  return db('notes')
-    .insert(note)
+function insert(user) {
+  return db('users')
+    .insert(user)
     .then(ids => ({ id: ids[0] }));
 }
 
-function update(id, note) {
-  return db('notes')
+function update(id, user) {
+  return db('users')
     .where('id', Number(id))
-    .update(note);note
+    .update(user);
 }
 
 function remove(id) {
-  return db('notes')
+  return db('users')
     .where('id', Number(id))
     .del();
 }
