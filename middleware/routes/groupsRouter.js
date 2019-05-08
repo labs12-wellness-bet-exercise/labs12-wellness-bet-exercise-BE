@@ -57,4 +57,20 @@ router.get('/:id/participants', (req, res) => {
     })
 })
 
+// GROUP PHOTOS -- photo link for now
+
+// get group photo
+router.get('/:id/photo', (req, res) => {
+  const id = req.params.id;
+  
+})
+// put group photo
+
+// post group photo
+
+// delete group photo 
+
+
+
+
 module.exports = router;

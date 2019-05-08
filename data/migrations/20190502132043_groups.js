@@ -15,7 +15,9 @@ exports.up = function(knex, Promise) {
 
     table.string("join_code").notNullable();
 
-    table.string("group_message").notNullable();
+    table.string("group_message").notNullable(); 
+
+    table.string("group_photo").notNullable();
 
     table.float("pot_total").notNullable();
 

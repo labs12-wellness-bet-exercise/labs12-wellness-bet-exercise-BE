@@ -46,3 +46,8 @@ function remove(id) {
     .del();
 }
 
+
+function getGroupPhoto(id) {
+  return db('groups')
+  .where('')
+}
