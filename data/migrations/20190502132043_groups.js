@@ -17,7 +17,8 @@ exports.up = function(knex, Promise) {
 
     table.string("group_message").notNullable(); 
 
-    table.string("group_photo").notNullable();
+    table.string("group_photo").notNullable()
+    .defaultTo('group photo does not exist');
 
     table.float("pot_total").notNullable();
 

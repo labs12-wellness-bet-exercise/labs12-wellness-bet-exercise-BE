@@ -71,29 +71,28 @@ router.get('/groupphoto/:id', (req, res) => {
     .json({error: 'There was an error getting your group photo', error})
   })
 });
-// // // put group photo -- needs group id
+// put group photo -- needs group id
 
 
 
 
+// post group photo 
 
 
 
-// // // post group photo 
-// router.post('/groupphoto', (req, res) => {
-  
-// });
+// delete group photo -- needs group id  -- You can't actually use a true delete on this or it will delete the whole group because of how the tables are structured, so I did it as an PUT request and made it so it would update the photo to "group photo does not exist"
 
-// // // delete group photo -- needs group id  
-
-// router.delete('/groupphoto/:group_id', (req, res) => {  
-//   .then()
-//   .catch(error => {
-//     res.status(500)
-//     .json({error: 'Sorry, your photo cannot be deleted'})
-//   })
-
-// })
+router.put('/groupphoto/:id/delete', (req, res) => {
+  db.deleteGroupPhoto(req.params.id)
+  .then( deleted => {
+    res.status(200)
+    .json({message: 'photo deleted', deleted}) 
+  })
+  .catch(error => {
+    res.status(500)
+    .json(error)
+  })
+})
 
 
 

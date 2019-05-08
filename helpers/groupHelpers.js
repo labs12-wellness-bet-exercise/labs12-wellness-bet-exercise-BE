@@ -8,7 +8,9 @@ module.exports = {
   update,
   remove,
   getGroupParticipants,
-  getGroupPhoto
+  getGroupPhoto, 
+  addGroupPhoto, 
+  deleteGroupPhoto
 };
 
 function find() {
@@ -56,3 +58,19 @@ function getGroupPhoto(id) {
   .select('group_photo') 
 }
 
+function addGroupPhoto(id, photo) {
+  return db('groups')
+  .where({group_id: id})
+  .insert({group_photo: photo})
+}
+
+function updateGroupPhoto() {
+
+}
+
+function deleteGroupPhoto(id) {
+ return db('groups')
+  .where({group_id: id})
+  .select('group_photo')
+  .update({group_photo: 'group photo does not exist'}) 
+}
