@@ -10,6 +10,7 @@ module.exports = {
   getGroupParticipants,
   getGroupPhoto, 
   addGroupPhoto, 
+  toDefaultGroupPhoto,
   deleteGroupPhoto
 };
 
@@ -61,11 +62,17 @@ function getGroupPhoto(id) {
 function addGroupPhoto(id, photo) {
   return db('groups')
   .where({group_id: id})
-  .insert({group_photo: photo})
+  .select('group_photo')
+  .update({group_photo: photo})
 }
 
-function updateGroupPhoto() {
-
+function toDefaultGroupPhoto(id) {
+  return db('groups')
+  .where({group_id: id})
+  .select('group_photo')
+  .update({
+    group_photo: 'https://images.unsplash.com/photo-1539966903171-89770f33f468?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
+  })
 }
 
 function deleteGroupPhoto(id) {
