@@ -60,16 +60,40 @@ router.get('/:id/participants', (req, res) => {
 // GROUP PHOTOS -- photo link for now
 
 // get group photo
-router.get('/:id/photo', (req, res) => {
-  const id = req.params.id;
+router.get('/groupphoto/:id', (req, res) => {
+  db.getGroupPhoto(req.params.id)
+  .then(group_photo => {
+    res.status(200)
+    .json(group_photo)
+  })
+  .catch(error => {
+    res.status(500)
+    .json({error: 'There was an error getting your group photo', error})
+  })
+});
+// // // put group photo -- needs group id
+
+
+
+
+
+
+
+// // // post group photo 
+// router.post('/groupphoto', (req, res) => {
   
-})
-// put group photo
+// });
 
-// post group photo
+// // // delete group photo -- needs group id  
 
-// delete group photo 
+// router.delete('/groupphoto/:group_id', (req, res) => {  
+//   .then()
+//   .catch(error => {
+//     res.status(500)
+//     .json({error: 'Sorry, your photo cannot be deleted'})
+//   })
 
+// })
 
 
 

@@ -7,7 +7,8 @@ module.exports = {
   insert,
   update,
   remove,
-  getGroupParticipants
+  getGroupParticipants,
+  getGroupPhoto
 };
 
 function find() {
@@ -47,7 +48,11 @@ function remove(id) {
 }
 
 
+// Group Photo Helpers
+
 function getGroupPhoto(id) {
   return db('groups')
-  .where('')
+  .where({group_id: id})
+  .select('group_photo') 
 }
+
