@@ -114,6 +114,4 @@ router.put('/groupphoto/:id/delete', (req, res) => {
   })
 })
 
-
-
 module.exports = router;
