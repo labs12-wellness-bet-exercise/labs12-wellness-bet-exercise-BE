@@ -19,11 +19,56 @@ router.get("/:id", (req, res) => {
   const id = req.params.id;
   db.findById(id)
     .then(group => {
-      res.status(200).json(group);
+      if (group.length > 0) {
+        res.status(200).json(group);
+      } else {
+        res.status(404).json({ error: "Couldn't find a group with that ID." });
+      }
     })
     .catch(err => {
       res.status(500).json({ error: "Problem finding that group...", err });
     });
+});
+
+router.post("/", async (req, res) => {
+  const group = req.body;
+  !group.group_name
+    ? res.status(406).json({
+        error: "Your group needs a name."
+      })
+    : group.buy_in_amount < 0
+    ? res.status(406).json({
+        error:
+          "Your buy-in amount cannot be a negative number. How would that even work?"
+      })
+    : !(group.start_date && group.end_date)
+    ? res.status(406).json({
+        error: "Your competition must have a beginning and end date."
+      })
+    : !group.group_message
+    ? res.status(406).json({
+        error:
+          "Please enter a group message, even if it's just one letter. But why not make it more than one letter? Take the time to send a warm welcome to your group. Or don't. I'm fine either way. But like I said before, it has to be at least one letter. Them's the rules."
+      })
+    : createGroup();
+
+  async function createGroup() {
+    try {
+      const groupId = await db.insert(group);
+      console.log(groupId);
+      const newGroup = await db.findById(groupId.id);
+      console.log(newGroup);
+      res.status(201).json({
+        message: "Congratulations. Your group was successfully added.",
+        newGroup
+      });
+    } catch (error) {
+      res.status(500).json({
+        errorMessage: "There was some sort of problem registering your group",
+        error
+      });
+    }
+  }
 });
 
 router.get("/:id/participants", (req, res) => {
@@ -144,6 +189,18 @@ router.put("/adminmessage/:id/delete", (req, res) => {
     })
     .catch(error => {
       res.status(500).json(error);
+    });
+});
+
+// GET GROUP JOIN CODE
+
+router.get("/:id/join_code", (req, res) => {
+  db.getJoinCode(req.params.id)
+    .then(join_code => {
+      res.status(200).json(join_code);
+    })
+    .catch(error => {
+      res.status(500).json({ message: `There was an error.`, error: error });
     });
 });
 

@@ -15,7 +15,8 @@ module.exports = {
   getAdminMessage,
   updateAdminMessage,
   toDefaultAdminMessage,
-  deleteAdminMessage
+  deleteAdminMessage,
+  getJoinCode
 };
 
 function find() {
@@ -23,7 +24,7 @@ function find() {
 }
 
 function findById(id) {
-  return db("groups").where({ id: Number(id) });
+  return db("groups").where({ group_id: Number(id) });
 }
 
 function getGroupParticipants(group_id) {
@@ -115,4 +116,11 @@ function deleteAdminMessage(id) {
     .where({ group_id: id })
     .select("group_message")
     .update({ group_message: "admin message does not exist" });
+}
+
+//Join code helper
+function getJoinCode(id) {
+  return db("groups")
+    .where({ group_id: id })
+    .select("join_code");
 }
