@@ -6,6 +6,7 @@ const generateJoinCode = () => {
   return joinCode;
 };
 
+
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("groups", table => {
     table.increments("group_id");
@@ -26,6 +27,7 @@ exports.up = function(knex, Promise) {
       .notNullable()
       .defaultTo(generateJoinCode())
       .unique();
+
 
     table.string("group_message").notNullable();
 
