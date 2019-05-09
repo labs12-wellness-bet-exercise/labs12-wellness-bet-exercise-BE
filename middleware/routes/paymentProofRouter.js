@@ -1,7 +1,7 @@
 const exress = require ('express');
 const router =  express.Router();
 const multer = require('multer');
-const upload = multer({dest:'/uploads/'});
+const upload = multer({dest:'uploads/'});
 const db = require('../../helpers/participantsHelpers');
 
 router.get('/', (req, res) => {
@@ -35,6 +35,8 @@ router.get('/:id', (req, res) => {
         .json({ error: "Problem finding that participant...", err })
     })
 });
+
+router.post('/', upload.single('productImage'))
 
 module.exports = router;
 
