@@ -7,7 +7,7 @@ const dir = './middleware';
 const users = require('./routes/usersRouter');
 const groups = require('./routes/groupsRouter');
 const participants = require('./routes/participantsRouter');
-const paymentProof = require('./routes/paymentProofRouter');
+
 
 
 const accessLogStream = rfs('access.log', {
@@ -24,5 +24,5 @@ module.exports = server => {
   server.use('/api/users', users);
   server.use('/api/groups', groups);
   server.use('/api/participants', participants);
-  server.use('api/participants/proof-of-payment', paymentProof);
+
 }

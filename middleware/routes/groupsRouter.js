@@ -1,14 +1,8 @@
 const express = require("express");
 const router = express.Router();
-<<<<<<< HEAD
 const db = require('../../helpers/groupHelpers');
 //
 router.get('/', (req, res) => {
-=======
-const db = require("../../helpers/groupHelpers");
-
-router.get("/", (req, res) => {
->>>>>>> ef0b98b0812cf1144cc225c8c720521c3fe1f405
   db.find()
     .then(groups => {
       res.status(200).json(groups);
