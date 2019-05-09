@@ -21,7 +21,7 @@ exports.up = function(knex, Promise) {
       .defaultTo(false)
       .notNullable();
 
-    table.string("venmoPhoto").notNullable();
+    table.string("paymentPhoto").notNullable();
 
     table
       .boolean("admin")
