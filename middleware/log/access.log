@@ -12,3 +12,6 @@
 ::1 - - [09/May/2019:16:48:35 +0000] "POST /api/groups/ HTTP/1.1" 500 120 "-" "PostmanRuntime/7.11.0"
 ::1 - - [09/May/2019:16:48:53 +0000] "POST /api/groups/ HTTP/1.1" 201 471 "-" "PostmanRuntime/7.11.0"
 ::1 - - [09/May/2019:16:50:07 +0000] "GET /api/groups/4/join_code HTTP/1.1" 200 28 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:21:14:02 +0000] "POST /api/participants/ HTTP/1.1" 500 79 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:21:14:11 +0000] "POST /api/participants/ HTTP/1.1" 500 79 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:21:17:06 +0000] "GET /api/participants/ HTTP/1.1" 200 531 "-" "PostmanRuntime/7.11.0"
