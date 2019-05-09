@@ -44,7 +44,14 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// get proof of buyin//
+router.post("/", async (req, res) => {
+  db.insert(req.body)
+    .then(group_participant => res.status(200).json(group_participant))
+    .catch(error => {
+      res.status(500).json({ message: "There was an error", error });
+    });
+});
+// get proof of buyin
 
 router.get("/buyinproof/:id", (req, res) => {
   db.getBuyinPhoto(req.params.id)

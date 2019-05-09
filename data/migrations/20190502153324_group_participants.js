@@ -22,11 +22,6 @@ exports.up = function(knex, Promise) {
       .notNullable();
 
     table.string("buyin_proof").defaultTo(null);
-
-    table
-      .boolean("admin")
-      .defaultTo(false)
-      .notNullable();
   });
 };
 
