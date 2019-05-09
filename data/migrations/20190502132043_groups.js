@@ -36,7 +36,7 @@ exports.up = function(knex, Promise) {
         "https://images.unsplash.com/photo-1539966903171-89770f33f468?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
       );
 
-    table.float("pot_total").notNullable();
+    table.float("pot_total");
 
     table
       .timestamp("created_at")
