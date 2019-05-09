@@ -21,7 +21,15 @@ exports.up = function(knex, Promise) {
       .defaultTo(false)
       .notNullable();
 
-    table.string("buyin_proof").defaultTo(null);
+
+
+    table
+      .boolean("admin")
+      .defaultTo(false)
+      .notNullable();
+
+    table.string("buyin_proof"), defaultTo(null);
+
   });
 };
 
