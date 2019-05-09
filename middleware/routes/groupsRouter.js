@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
       .json({
          error: "Your group needs a name."
          }):
-  group.buy_in_amout < 0 ?
+  group.buy_in_amount < 0 ?
     res
       .status(406)
       .json({
@@ -182,10 +182,5 @@ router.get('/:id/join_code', (req, res) => {
   error: error})
   })
 })
-
-
-// CHECK JOIN CODE 
-
-
 
 module.exports = router;
