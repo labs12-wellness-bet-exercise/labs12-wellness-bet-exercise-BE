@@ -1,0 +1,17 @@
+<<<<<<< HEAD
+=======
+::1 - - [09/May/2019:05:23:35 +0000] "POST /api/groups HTTP/1.1" 201 503 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:35:41 +0000] "GET /api/groups/1/join_code HTTP/1.1" 500 44 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:36:05 +0000] "GET /api/groups/1/join_code HTTP/1.1" 500 44 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:36:11 +0000] "GET /api/groups/ HTTP/1.1" 200 987 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:36:20 +0000] "GET /api/groups/1/join_code HTTP/1.1" 500 44 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:36:22 +0000] "GET /api/groups/1/join_code HTTP/1.1" 500 44 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:36:30 +0000] "GET /api/groups/2/join_code HTTP/1.1" 500 44 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:37:17 +0000] "GET /api/groups/2/join_code HTTP/1.1" 200 23 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:37:24 +0000] "GET /api/groups/1/join_code HTTP/1.1" 200 22 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:48:10 +0000] "POST /api/groups/ HTTP/1.1" 406 272 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:48:19 +0000] "POST /api/groups/ HTTP/1.1" 500 120 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:48:35 +0000] "POST /api/groups/ HTTP/1.1" 500 120 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:48:53 +0000] "POST /api/groups/ HTTP/1.1" 201 471 "-" "PostmanRuntime/7.11.0"
+::1 - - [09/May/2019:16:50:07 +0000] "GET /api/groups/4/join_code HTTP/1.1" 200 28 "-" "PostmanRuntime/7.11.0"
+>>>>>>> 463f429744c942393736823d261995fe63a55045

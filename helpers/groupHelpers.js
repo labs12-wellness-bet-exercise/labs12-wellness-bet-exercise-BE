@@ -7,7 +7,12 @@ module.exports = {
   insert,
   update,
   remove,
-  getGroupParticipants
+  getGroupParticipants,
+  getGroupPhoto, 
+  addGroupPhoto, 
+  toDefaultGroupPhoto,
+  deleteGroupPhoto, 
+  getJoinCode
 };
 
 function find() {
@@ -15,7 +20,7 @@ function find() {
 }
 
 function findById(id) {
-  return db('groups').where({ id: Number(id) });
+  return db('groups').where({ group_id: Number(id) });
 }
 
 function getGroupParticipants(group_id) {
@@ -44,5 +49,43 @@ function remove(id) {
   return db('groups')
     .where('id', Number(id))
     .del();
+}
+
+
+// Group Photo Helpers
+
+function getGroupPhoto(id) {
+  return db('groups')
+  .where({group_id: id})
+  .select('group_photo') 
+}
+
+function addGroupPhoto(id, photo) {
+  return db('groups')
+  .where({group_id: id})
+  .select('group_photo')
+  .update({group_photo: photo})
+}
+
+function toDefaultGroupPhoto(id) {
+  return db('groups')
+  .where({group_id: id})
+  .select('group_photo')
+  .update({
+    group_photo: 'https://images.unsplash.com/photo-1539966903171-89770f33f468?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
+  })
+}
+
+function deleteGroupPhoto(id) {
+ return db('groups')
+  .where({group_id: id})
+  .select('group_photo')
+  .update({group_photo: 'group photo does not exist'}) 
+} 
+
+function getJoinCode(id) {
+  return db('groups')
+  .where({group_id: id})
+  .select('join_code')
 }
 
