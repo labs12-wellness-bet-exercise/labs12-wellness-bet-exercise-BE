@@ -8,7 +8,8 @@ module.exports = {
   remove,
   getBuyinPhoto,
   addBuyinPhoto,
-  deleteBuyinPhoto
+  deleteBuyinPhoto,
+  addPaymentPhoto
 };
 
 function find() {
@@ -42,6 +43,13 @@ function getBuyinPhoto(id) {
   return db("group_participants")
     .where({ user_id: id })
     .select("buyin_proof");
+}
+
+function addPaymentPhoto(id, photo) {
+  return db("group_participants")
+    .where({ user_id: id })
+    .select("buyin_proof")
+    .update({ buyin_proof: photo });
 }
 
 function addBuyinPhoto(id, photo) {

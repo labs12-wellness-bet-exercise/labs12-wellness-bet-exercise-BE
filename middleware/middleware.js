@@ -8,6 +8,8 @@ const users = require('./routes/usersRouter');
 const groups = require('./routes/groupsRouter');
 const participants = require('./routes/participantsRouter');
 
+
+
 const accessLogStream = rfs('access.log', {
   interval: '1d', // rotate daily
   path: path.join(dir, 'log')
@@ -22,4 +24,5 @@ module.exports = server => {
   server.use('/api/users', users);
   server.use('/api/groups', groups);
   server.use('/api/participants', participants);
+
 }
