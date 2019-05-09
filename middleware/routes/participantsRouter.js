@@ -34,6 +34,8 @@ router.post("/", async (req, res) => {
     .then(group_participant => res.status(200).json(group_participant))
     .catch(error => {
       res.status(500).json({ message: "There was an error", error });
+    });
+});
 // get proof of buyin
 
 router.get("/buyinproof/:id", (req, res) => {
