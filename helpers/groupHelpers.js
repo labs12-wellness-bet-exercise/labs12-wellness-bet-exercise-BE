@@ -19,7 +19,7 @@ function find() {
 }
 
 function findById(id) {
-  return db('groups').where({ id: Number(id) });
+  return db('groups').where({ group_id: Number(id) });
 }
 
 function getGroupParticipants(group_id) {
