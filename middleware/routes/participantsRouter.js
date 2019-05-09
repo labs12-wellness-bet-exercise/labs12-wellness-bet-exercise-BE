@@ -34,6 +34,43 @@ router.post("/", async (req, res) => {
     .then(group_participant => res.status(200).json(group_participant))
     .catch(error => {
       res.status(500).json({ message: "There was an error", error });
+// get proof of buyin
+
+router.get("/buyinproof/:id", (req, res) => {
+  db.getBuyin(req.params.id)
+    .then(buyin_proof => {
+      res.status(200).json(buyin_proof);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error retrieving your proof of buyin",
+        error
+      });
+    });
+});
+
+// add proof of buyin
+
+router.post("buyinproof/:id", (req, res) => {
+  db.addBuyinPhoto(req.params.id, req.body.buyin_proof)
+    .then(buyin_proof => {
+      res.status(200).json(buyin_proof);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error adding your proof of buyin",
+        error
+      });
+    });
+});
+
+router.put("/buyinproof/:id/delete", (req, res) => {
+  db.deleteBuyinPhoto(req.params.id)
+    .then(deleted => {
+      res.status(200).json({ message: "proof of buyin deleted", deleted });
+    })
+    .catch(error => {
+      res.status(500).json(error);
     });
 });
 

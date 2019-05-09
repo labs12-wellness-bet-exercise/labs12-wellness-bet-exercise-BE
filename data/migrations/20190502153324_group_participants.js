@@ -21,12 +21,7 @@ exports.up = function(knex, Promise) {
       .defaultTo(false)
       .notNullable();
 
-    table.string("venmoPhoto").notNullable();
-
-    table
-      .boolean("admin")
-      .defaultTo(false)
-      .notNullable();
+    table.string("buyin_proof"), defaultTo(null);
   });
 };
 
