@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
       .json({
          error: "Your group needs a name."
          }):
-  group.buy_in_amout < 0 ?
+  group.buy_in_amount < 0 ?
     res
       .status(406)
       .json({
@@ -166,6 +166,20 @@ router.put('/groupphoto/:id/delete', (req, res) => {
   .catch(error => {
     res.status(500)
     .json(error)
+  })
+}) 
+
+// GET GROUP JOIN CODE 
+
+router.get('/:id/join_code', (req, res) => {
+  db.getJoinCode(req.params.id)
+  .then(join_code => {
+    res.status(200).json(join_code)
+  })
+  .catch(error => {
+    res.status(500)
+    .json({message: `There was an error.`,
+  error: error})
   })
 })
 
