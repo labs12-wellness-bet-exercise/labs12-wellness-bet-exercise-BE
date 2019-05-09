@@ -21,7 +21,11 @@ exports.up = function(knex, Promise) {
       .defaultTo(false)
       .notNullable();
 
+<<<<<<< HEAD
     table.string("paymentPhoto").notNullable();
+=======
+    table.string("buyin_proof"), defaultTo(null);
+>>>>>>> ef0b98b0812cf1144cc225c8c720521c3fe1f405
 
     table
       .boolean("admin")
