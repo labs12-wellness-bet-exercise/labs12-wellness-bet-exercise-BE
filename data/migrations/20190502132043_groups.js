@@ -1,3 +1,9 @@
+const generateJoinCode = () => {
+  let joinCode = Math.random().toString(36).replace('0.', ''); 
+
+  return joinCode;
+}
+
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("groups", table => {
     table.increments("group_id");
@@ -13,7 +19,8 @@ exports.up = function(knex, Promise) {
 
     table.string("end_date").notNullable();
 
-    table.string("join_code").notNullable();
+    table.string("join_code").notNullable()
+    .defaultTo(generateJoinCode()).unique();
 
     table.string("group_message").notNullable(); 
 

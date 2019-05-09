@@ -11,7 +11,8 @@ module.exports = {
   getGroupPhoto, 
   addGroupPhoto, 
   toDefaultGroupPhoto,
-  deleteGroupPhoto
+  deleteGroupPhoto, 
+  getJoinCode
 };
 
 function find() {
@@ -80,4 +81,11 @@ function deleteGroupPhoto(id) {
   .where({group_id: id})
   .select('group_photo')
   .update({group_photo: 'group photo does not exist'}) 
+} 
+
+function getJoinCode(id) {
+  return db('groups')
+  .where({group_id: id})
+  .select('join_code')
 }
+
