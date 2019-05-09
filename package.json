@@ -21,7 +21,7 @@
     "morgan": "^1.9.1",
     "pg": "^7.10.0",
     "rotating-file-stream": "^1.4.1",
-    "sqlite3": "^4.0.6"
+    "sqlite3": "^4.0.7"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
