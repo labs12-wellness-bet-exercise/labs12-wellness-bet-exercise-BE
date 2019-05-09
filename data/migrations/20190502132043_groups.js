@@ -15,7 +15,10 @@ exports.up = function(knex, Promise) {
 
     table.string("join_code").notNullable();
 
-    table.string("group_message").notNullable();
+    table.string("group_message").notNullable(); 
+
+    table.string("group_photo").notNullable()
+    .defaultTo('https://images.unsplash.com/photo-1539966903171-89770f33f468?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
 
     table.float("pot_total").notNullable();
 
