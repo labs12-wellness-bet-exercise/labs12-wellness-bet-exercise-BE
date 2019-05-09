@@ -16,4 +16,5 @@ module.exports = server => {
   server.use('/api/users', users);
   server.use('/api/groups', groups);
   server.use('/api/participants', participants);
+  server.use('/api/usergroups', usergroups);
 }
