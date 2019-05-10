@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require('../../helpers/groupHelpers');
 const multer = require ('multer');
 
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb){
     cb(null, './data/uploads/groupPhotos');
@@ -15,7 +14,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
+
   db.find()
     .then(groups => {
       res.status(200).json(groups);
@@ -205,7 +205,7 @@ router.put("/adminmessage/:id/delete", (req, res) => {
     });
 });
 
-// GET GROUP JOIN CODE
+// GET GROUP JOIN CODE BY GROUP ID
 
 router.get("/:id/join_code", (req, res) => {
   db.getJoinCode(req.params.id)
