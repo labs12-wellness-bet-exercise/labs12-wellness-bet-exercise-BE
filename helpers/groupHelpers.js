@@ -128,6 +128,7 @@ function getJoinCode(id) {
     .select("join_code");
 }
 
+
 // Group info helper for selecting relevant info
 function getGroupInfo(id) {
   return db("groups")
@@ -135,7 +136,6 @@ function getGroupInfo(id) {
     .select("group_name", "buy_in_amount", "start_date", "end_date");
 }
 
-// Get array of join codes and group IDs
 function getJoinCodes() {
   return db("groups")
     .select("join_code")

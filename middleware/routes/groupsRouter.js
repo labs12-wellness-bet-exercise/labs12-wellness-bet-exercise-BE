@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const db = require("../../helpers/groupHelpers");
 const multer = require("multer");
 
@@ -15,6 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get("/", (req, res) => {
+
   db.find()
     .then(groups => {
       res.status(200).json(groups);
@@ -119,6 +121,7 @@ router.get("/groupphoto/:id", (req, res) => {
 });
 
 // change group photo
+
 
 router.put("/groupphoto/:id", upload.single("group_photo"), (req, res) => {
   db.addGroupPhoto(req.params.id, req.body.group_photo)
