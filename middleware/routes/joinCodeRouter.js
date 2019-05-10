@@ -13,4 +13,14 @@ router.get("/", (req, res) => {
     .catch(error => res.status(500).json(error));
 });
 
+// GET GROUP_ID by JOIN_CODE
+
+router.get("/:join_code", (req, res) => {
+  db.getGroupId(req.params.join_code)
+    .then(groupID => res.status(200).json(groupID))
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
+
 module.exports = router;
