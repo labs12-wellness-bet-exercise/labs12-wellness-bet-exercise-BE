@@ -3,11 +3,10 @@ const router = express.Router();
 const db = require("../../helpers/participantsHelpers");
 const multer = require ('multer');
 
-//const path = require('path')
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb){
-    cb(null, './data/uploads');
+    cb(null, './data/uploads/paymentProof');
   },
   filename: function (req, file, cb){
     cb (null, new Date().toISOString() + file.originalname);
@@ -70,6 +69,7 @@ router.get("/buyinproof/:id", (req, res) => {
 
 router.put("/buyinproof/:id", upload.single('buyin_proof'), (req, res) => {
   console.log(req.file);
+  
   db.addPaymentPhoto(req.params.id, req.body.buyin_proof)
   .then(() => {
     res.status(200).json({ message: "Photo Successfully Uploaded" });
