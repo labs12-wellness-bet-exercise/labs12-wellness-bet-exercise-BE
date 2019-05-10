@@ -7,7 +7,6 @@ const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, "./data/uploads/paymentProof");
-
   },
   filename: function(req, file, cb) {
     cb(null, new Date().toISOString() + file.originalname);
@@ -43,13 +42,23 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// post request to add a user to a group.
+//expects an object with user_id and group_id
 router.post("/", async (req, res) => {
   db.insert(req.body)
-    .then(group_participant => res.status(200).json(group_participant))
+    .then(group_participant =>
+      res
+        .status(200)
+        .json({
+          message: "you were successfully added to a group!",
+          group_participant
+        })
+    )
     .catch(error => {
       res.status(500).json({ message: "There was an error", error });
     });
 });
+
 // get proof of buyin
 
 router.get("/buyinproof/:id", (req, res) => {
