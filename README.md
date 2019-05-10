@@ -59,6 +59,10 @@
 
 - `.get` to `/api/groups/:id/join_code` returns the join code by group id. This code is automatically generated in the table, so all logic to check for matches should be handled on the front end.
 
+- `.get` to `/api/joincodes/` returns an array of objects with all the group_ids and join_codes.
+
+- `.get` to `/api/joincodes/:join_code` returns the group_id associated with the specified join_code.
+
 ## Group Participants Endpoints
 
 - `.post` to `/api/participants/` adds a group participant to the group_participants table. It requires a group_id and a user_id.

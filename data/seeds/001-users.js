@@ -27,7 +27,7 @@ exports.seed = async function(knex, Promise) {
           first_name: "Jane",
           last_name: "Fonda",
           password: "password",
-          email: "janefonda4lyfe@yahoo.com",
+          email: "janefonda4lyfe@gmail.com",
           profilePhoto:
             "https://pixel.nymag.com/imgs/fashion/daily/2015/02/25/25-jane-fonda-lede.w330.h412.jpg"
         },
