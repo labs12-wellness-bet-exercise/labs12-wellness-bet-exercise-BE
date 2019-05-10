@@ -11,3 +11,4 @@ function getGroupsByUser(id) {
     .leftJoin("groups", "group_participants.group_id", "groups.group_id")
     .where({ user_id: Number(id) });
 }
+//hey, it's me lyd
