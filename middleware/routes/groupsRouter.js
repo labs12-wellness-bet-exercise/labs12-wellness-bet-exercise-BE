@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const db = require('../../helpers/groupHelpers');
+const db = require("../../helpers/groupHelpers");
 //
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   db.find()
     .then(groups => {
       res.status(200).json(groups);
@@ -201,6 +201,21 @@ router.get("/:id/join_code", (req, res) => {
     })
     .catch(error => {
       res.status(500).json({ message: `There was an error.`, error: error });
+    });
+});
+
+// get group info
+
+router.get("/groupinfo/:id", (req, res) => {
+  db.getGroupInfo(req.params.id)
+    .then(group_message => {
+      res.status(200).json(group_message);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error retrieving your group's information",
+        error
+      });
     });
 });
 

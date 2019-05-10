@@ -64,13 +64,3 @@ function deleteBuyinPhoto(id) {
     .select("buyin_proof")
     .update({ buyin_proof: "buyin photo does not exist" });
 }
-
-// Group info helper for selecting relevant info
-function getGroupInfo(id) {
-  return db("groups")
-    .where({ group_id: id })
-    .select("group_name") // group name
-    .select("buy_in_amount") // buy in
-    .select("start_date") // start
-    .select("end_date"); // end
-}

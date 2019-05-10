@@ -16,8 +16,8 @@ module.exports = {
   updateAdminMessage,
   toDefaultAdminMessage,
   deleteAdminMessage,
-  getJoinCode
-  
+  getJoinCode,
+  getGroupInfo
 };
 
 function find() {
@@ -124,4 +124,11 @@ function getJoinCode(id) {
   return db("groups")
     .where({ group_id: id })
     .select("join_code");
+}
+
+// Group info helper for selecting relevant info
+function getGroupInfo(id) {
+  return db("groups")
+    .where({ group_id: id })
+    .select("group_name", "buy_in_amount", "start_date", "end_date");
 }
