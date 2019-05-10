@@ -47,12 +47,9 @@ router.get("/:id", (req, res) => {
 router.post("/", async (req, res) => {
   db.insert(req.body)
     .then(group_participant =>
-      res
-        .status(200)
-        .json({
-          message: "you were successfully added to a group!",
-          group_participant
-        })
+      res.status(200).json({
+        message: "you were successfully added to a group!"
+      })
     )
     .catch(error => {
       res.status(500).json({ message: "There was an error", error });
