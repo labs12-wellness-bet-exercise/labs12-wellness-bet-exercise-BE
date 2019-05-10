@@ -17,7 +17,8 @@ module.exports = {
   toDefaultAdminMessage,
   deleteAdminMessage,
   getJoinCode,
-  getJoinCodes
+  getJoinCodes,
+  getGroupId
 };
 
 function find() {
@@ -131,5 +132,12 @@ function getJoinCode(id) {
 function getJoinCodes() {
   return db("groups")
     .select("join_code")
+    .select("group_id");
+}
+
+// Get group_id from join_code
+function getGroupId(joinCode) {
+  return db("groups")
+    .where({ join_code: joinCode })
     .select("group_id");
 }
