@@ -55,6 +55,13 @@
 - `.put` to `/api/groups/groupphoto/:id/default` switches the photo back to the default group photo image.
 - `.put` to `/api/groups/groupphoto/:id/delete` removes the group photo and replaces it with the string 'group photo does not exist'.
 
+## Admin Message Endpoints
+
+- `.get` to `/api/groups/adminmessage/:id` returns the group photo by group id.
+- `.put` to `/api/groups/adminmessage/:id` changes the group photo. It expects the req.body to have a key of group_photo with a string value (link to photo).
+- `.put` to `/api/groups/adminmessage/:id/default` switches the photo back to the default group photo image.
+- `.put` to `/api/groups/adminmessage/:id/delete` removes the group photo and replaces it with the string 'group photo does not exist'.
+
 ## Group Join Code Endpoint
 
 - `.get` to `/api/groups/:id/join_code` returns the join code by group id. This code is automatically generated in the table, so all logic to check for matches should be handled on the front end.
@@ -66,3 +73,7 @@
 ## Group Participants Endpoints
 
 - `.post` to `/api/participants/` adds a group participant to the group_participants table. It requires a group_id and a user_id.
+
+## Groups Listed By User_ID Endpoint
+
+- `.get` to `/api/usergroups/:id` gets all of the groups associated with the user id.
