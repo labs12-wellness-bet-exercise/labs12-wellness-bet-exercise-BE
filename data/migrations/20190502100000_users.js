@@ -9,11 +9,6 @@ exports.up = function(knex, Promise) {
     table.string("email").notNullable();
 
     table.string("profilePhoto").notNullable();
-
-    // table
-    //   .timestamp("created_at")
-    //   .defaultTo(knex.fn.now())
-    //   .notNullable();
   });
 };
 

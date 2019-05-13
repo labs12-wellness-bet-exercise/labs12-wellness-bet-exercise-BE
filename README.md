@@ -2,19 +2,19 @@
 
 ## users table
 
-| name of field |   data type    |                notes |
-| ------------- | :------------: | -------------------: |
-| id            |    integer     |       auto-generated |
-| full_name     |    varchar     | character limit: 255 |
-| password      |    varchar     | character limit: 255 |
-| email         |    varchar     | character limit: 255 |
-| profilePhoto  |    varchar     | character limit: 255 |
-| created_at    | timestamp/date |      defaults to now |
+| name of field | data type |                                         notes |
+| ------------- | :-------: | --------------------------------------------: |
+| id            |  integer  |                                auto-generated |
+| display_name  |  varchar  |                          character limit: 255 |
+| google_uuid   |  varchar  | this is the connection with firebase oauth db |
+| email         |  varchar  |                          character limit: 255 |
+| profilePhoto  |  varchar  |                          character limit: 255 |
 
 ## Users Endpoints
 
 - `.get` to `/api/users/` returns an array all users in the database
 - `.get` to `/api/users/:id` returns one user by id
+- `.post` to `/api/users/` expects an object with display_name, email, profilePhoto, and google_uuid.
 
 ## group_participants table
 
