@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
 
     table.string("last_name").notNullable();
 
-    table.string("password").notNullable();
+    table.string("google_uuid").unique();
 
     table.string("email").notNullable();
 
