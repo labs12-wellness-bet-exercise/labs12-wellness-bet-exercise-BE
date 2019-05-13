@@ -36,6 +36,6 @@ router.post("/", async (req, res) => {
     .catch(error => {
       res.status(500).json(error);
     });
-}); // will add google_uuid to post request on front end.
+}); // will add google_uuid and photo from google as profile photo to post request on front end.
 
 module.exports = router;
