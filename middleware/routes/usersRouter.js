@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
     .catch(err => {
       res.status(500).json({
         error: "Can't return the list of users!",
-        err
+        err: err
       });
     });
 });
@@ -22,7 +22,7 @@ router.get("/:id", (req, res) => {
       res.status(200).json(user);
     })
     .catch(err => {
-      res.status(500).json({ error: "Problem finding that user...", err });
+      res.status(500).json({ error: "Problem finding that user...", err: err });
     });
 });
 
@@ -34,7 +34,11 @@ router.post("/", async (req, res) => {
       });
     })
     .catch(error => {
-      res.status(500).json(error);
+      if (error.code === "SQLITE_CONSTRAINT") {
+        return res.status(500).json({
+          message: "User is already in the database. Proceed like normal."
+        });
+      } else return res.status(500).json(error);
     });
 }); // will add google_uuid and photo from google as profile photo to post request on front end.
 
@@ -43,7 +47,10 @@ router.get("/userId/:google_uuid", (req, res) => {
   db.getUserIdByGoogleId(req.params.google_uuid)
     .then(userId => res.status(200).json(userId))
     .catch(error => {
-      res.status(500).json(error);
+      res.status(500).json({
+        error: error,
+        code: error.code
+      });
     });
 });
 
