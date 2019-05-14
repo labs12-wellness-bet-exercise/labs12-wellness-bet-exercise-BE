@@ -10,9 +10,14 @@ const participants = require("./routes/participantsRouter");
 const usergroups = require("./routes/userGroupsRouter");
 const joinCodeRouter = require("./routes/joinCodeRouter");
 
+
 module.exports = server => {
   server.use(express.json());
   server.use(cors());
+  server.use(function (req, res, next){
+    res.setHeader('Access-Control-Allow-Origin' , '*');
+    next();
+  })
   server.use(morgan("combined"));
   server.use("/api/users", users);
   server.use("/api/groups", groups);
