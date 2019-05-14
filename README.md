@@ -15,6 +15,7 @@
 - `.get` to `/api/users/` returns an array all users in the database
 - `.get` to `/api/users/:id` returns one user by id
 - `.post` to `/api/users/` expects an object with display_name, email, profilePhoto, and google_uuid.
+- `.get` to `/api/users/userId/:google_uuid` expects an object with the google_uuid. It will return an object with the user_id.
 
 ## group_participants table
 

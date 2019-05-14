@@ -38,4 +38,13 @@ router.post("/", async (req, res) => {
     });
 }); // will add google_uuid and photo from google as profile photo to post request on front end.
 
+// GET user_id from google_uuid
+router.get("/userId/:google_uuid", (req, res) => {
+  db.getUserIdByGoogleId(req.params.google_uuid)
+    .then(userId => res.status(200).json(userId))
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
+
 module.exports = router;
