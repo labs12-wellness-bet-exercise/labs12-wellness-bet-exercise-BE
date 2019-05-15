@@ -1,7 +1,20 @@
 const express = require("express");
 const router = express.Router();
+
 const db = require("../../helpers/groupHelpers");
-//
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./data/uploads/groupPhotos");
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
+
 router.get("/", (req, res) => {
   db.find()
     .then(groups => {
@@ -105,7 +118,7 @@ router.get("/groupphoto/:id", (req, res) => {
 
 // change group photo
 
-router.put("/groupphoto/:id", (req, res) => {
+router.put("/groupphoto/:id", upload.single("group_photo"), (req, res) => {
   db.addGroupPhoto(req.params.id, req.body.group_photo)
     .then(() => {
       res.status(200).json({ message: "photo successfully changed" });
@@ -189,7 +202,7 @@ router.put("/adminmessage/:id/delete", (req, res) => {
     });
 });
 
-// GET GROUP JOIN CODE
+// GET GROUP JOIN CODE BY GROUP ID
 
 router.get("/:id/join_code", (req, res) => {
   db.getJoinCode(req.params.id)
@@ -198,6 +211,21 @@ router.get("/:id/join_code", (req, res) => {
     })
     .catch(error => {
       res.status(500).json({ message: `There was an error.`, error: error });
+    });
+});
+
+// get group info
+
+router.get("/groupinfo/:id", (req, res) => {
+  db.getGroupInfo(req.params.id)
+    .then(group_message => {
+      res.status(200).json(group_message);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error retrieving your group's information",
+        error
+      });
     });
 });
 

@@ -1,21 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../../helpers/participantsHelpers");
-const multer = require ('multer');
 
-//const path = require('path')
+const multer = require("multer");
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb){
-    cb(null, './data/uploads');
+  destination: function(req, file, cb) {
+    cb(null, "./data/uploads/paymentProof");
   },
-  filename: function (req, file, cb){
-    cb (null, new Date().toISOString() + file.originalname);
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
   }
-})
+});
 
-const upload = multer({storage: storage});
-
+const upload = multer({ storage: storage });
 
 router.get("/", (req, res) => {
   db.find()
@@ -44,13 +42,20 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// post request to add a user to a group.
+//expects an object with user_id and group_id
 router.post("/", async (req, res) => {
   db.insert(req.body)
-    .then(group_participant => res.status(200).json(group_participant))
+    .then(group_participant =>
+      res.status(200).json({
+        message: "you were successfully added to a group!"
+      })
+    )
     .catch(error => {
       res.status(500).json({ message: "There was an error", error });
     });
 });
+
 // get proof of buyin
 
 router.get("/buyinproof/:id", (req, res) => {
@@ -68,15 +73,16 @@ router.get("/buyinproof/:id", (req, res) => {
 // add proof of buyin
 //Needs to be a put. The field already exists on a participant, it's just null
 
-router.put("/buyinproof/:id", upload.single('buyin_proof'), (req, res) => {
+router.put("/buyinproof/:id", upload.single("buyin_proof"), (req, res) => {
   console.log(req.file);
+
   db.addPaymentPhoto(req.params.id, req.body.buyin_proof)
-  .then(() => {
-    res.status(200).json({ message: "Photo Successfully Uploaded" });
-  })
-  .catch(error => {
-    res.status(500).json({message: 'nooooo'});
-  });
+    .then(() => {
+      res.status(200).json({ message: "Photo Successfully Uploaded" });
+    })
+    .catch(error => {
+      res.status(500).json({ message: "nooooo" });
+    });
 });
 
 router.put("/buyinproof/:id/delete", (req, res) => {

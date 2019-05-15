@@ -1,10 +1,10 @@
 // this function randomly generates a string of numbers and/or letters, which will comprise the join_code. The join_code is set to automatically default to the random output of this function. It is possible that the table could throw an error if this code randomly generates the same code twice because of the .unique(), but that is desired behavior because the program would get confused by a person joining two groups with the same join code. The probability of that happening is unlikely, but if it does, the table will throw a SQL constraint error if that happens. - MJ
-const generateJoinCode = () => {
-  let joinCode = Math.random()
-    .toString(36)
-    .replace("0.", "");
-  return joinCode;
-};
+// const generateJoinCode = () => {
+//   let joinCode = Math.random()
+//     .toString(36)
+//     .replace("0.", "");
+//   return joinCode;
+// };
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("groups", table => {
@@ -24,8 +24,8 @@ exports.up = function(knex, Promise) {
     table
       .string("join_code")
       .notNullable()
-      .defaultTo(generateJoinCode())
-      .unique();
+      .unique()
+      // .defaultTo(generateJoinCode())
 
     table.string("group_message").notNullable();
 

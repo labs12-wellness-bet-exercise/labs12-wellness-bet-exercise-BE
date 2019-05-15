@@ -2,19 +2,20 @@
 
 ## users table
 
-| name of field |   data type    |                notes |
-| ------------- | :------------: | -------------------: |
-| id            |    integer     |       auto-generated |
-| full_name     |    varchar     | character limit: 255 |
-| password      |    varchar     | character limit: 255 |
-| email         |    varchar     | character limit: 255 |
-| profilePhoto  |    varchar     | character limit: 255 |
-| created_at    | timestamp/date |      defaults to now |
+| name of field | data type |                                         notes |
+| ------------- | :-------: | --------------------------------------------: |
+| id            |  integer  |                                auto-generated |
+| display_name  |  varchar  |                          character limit: 255 |
+| google_uuid   |  varchar  | this is the connection with firebase oauth db |
+| email         |  varchar  |                          character limit: 255 |
+| profilePhoto  |  varchar  |                          character limit: 255 |
 
 ## Users Endpoints
 
 - `.get` to `/api/users/` returns an array all users in the database
 - `.get` to `/api/users/:id` returns one user by id
+- `.post` to `/api/users/` expects an object with display_name, email, profilePhoto, and google_uuid.
+- `.get` to `/api/users/userId/:google_uuid` expects an object with the google_uuid. It will return an object with the user_id.
 
 ## group_participants table
 
@@ -55,10 +56,25 @@
 - `.put` to `/api/groups/groupphoto/:id/default` switches the photo back to the default group photo image.
 - `.put` to `/api/groups/groupphoto/:id/delete` removes the group photo and replaces it with the string 'group photo does not exist'.
 
+## Admin Message Endpoints
+
+- `.get` to `/api/groups/adminmessage/:id` returns the group photo by group id.
+- `.put` to `/api/groups/adminmessage/:id` changes the group photo. It expects the req.body to have a key of group_photo with a string value (link to photo).
+- `.put` to `/api/groups/adminmessage/:id/default` switches the photo back to the default group photo image.
+- `.put` to `/api/groups/adminmessage/:id/delete` removes the group photo and replaces it with the string 'group photo does not exist'.
+
 ## Group Join Code Endpoint
 
 - `.get` to `/api/groups/:id/join_code` returns the join code by group id. This code is automatically generated in the table, so all logic to check for matches should be handled on the front end.
 
+- `.get` to `/api/joincodes/` returns an array of objects with all the group_ids and join_codes.
+
+- `.get` to `/api/joincodes/:join_code` returns the group_id associated with the specified join_code.
+
 ## Group Participants Endpoints
 
 - `.post` to `/api/participants/` adds a group participant to the group_participants table. It requires a group_id and a user_id.
+
+## Groups Listed By User_ID Endpoint
+
+- `.get` to `/api/usergroups/:id` gets all of the groups associated with the user id.
