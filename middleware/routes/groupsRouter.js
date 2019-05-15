@@ -70,7 +70,8 @@ router.post("/", async (req, res) => {
       const groupId = await db.insert(group);
       console.log(groupId);
       res.status(201).json({
-        message: "Congratulations. Your group was successfully added."
+        message: "Congratulations. Your group was successfully added.",
+        groupId
       });
     } catch (error) {
       res.status(500).json({
