@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const db = require('../../helpers/groupHelpers');
+const db = require("../../helpers/groupHelpers");
 //
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   db.find()
     .then(groups => {
       res.status(200).json(groups);
@@ -56,11 +56,8 @@ router.post("/", async (req, res) => {
     try {
       const groupId = await db.insert(group);
       console.log(groupId);
-      const newGroup = await db.findById(groupId.id);
-      console.log(newGroup);
       res.status(201).json({
-        message: "Congratulations. Your group was successfully added.",
-        newGroup
+        message: "Congratulations. Your group was successfully added."
       });
     } catch (error) {
       res.status(500).json({
