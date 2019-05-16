@@ -9,58 +9,74 @@ module.exports = {
   getBuyinPhoto,
   addBuyinPhoto,
   deleteBuyinPhoto,
-  addPaymentPhoto
+  addPaymentPhoto,
+  getUsersByGroupId
 };
 
+// returns array of group participants
 function find() {
   return db("group_participants");
 }
 
+// find by group_participants_id
 function findById(id) {
-  return db("group_participants").where({ id: Number(id) });
+  return db("group_participants").where({ group_participants_id: Number(id) });
 }
 
+// add group_participant -- needs group_id and user_id. buyin_proof and paid status default to empty & false respectively
 function insert(group_participant) {
   return db("group_participants")
     .insert(group_participant)
     .then(ids => ({ id: ids[0] }));
 }
 
-function update(id, group_participant) {
+// update by group_participants_id
+function update(group_participants_id, group_participant) {
   return db("group_participants")
-    .where("id", Number(id))
+    .where("group_participants_id", Number(group_participants_id))
     .update(group_participant);
 }
 
-function remove(id) {
+// deletes a group_participant by their group_participants_id.
+function remove(group_participants_id) {
   return db("group_participants")
-    .where("id", Number(id))
+    .where("group_participants_id", Number(group_participants_id))
     .del();
 }
 
 // Buyin proof helpers
-function getBuyinPhoto(id) {
+// get buyin_proof by user_id and group_id
+function getBuyinPhoto(user_id, group_id) {
   return db("group_participants")
-    .where({ user_id: id })
+    .where({ user_id: user_id, group_id: group_id })
     .select("buyin_proof");
 }
 
-function addPaymentPhoto(id, photo) {
+// add payment photo -- requires user_id, group_id and photo
+function addPaymentPhoto(user_id, group_id, photo) {
   return db("group_participants")
-    .where({ user_id: id })
+    .where({ user_id: user_id, group_id: group_id })
     .select("buyin_proof")
     .update({ buyin_proof: photo });
 }
 
-function addBuyinPhoto(id, photo) {
+// add buyin_proof by user_id and group_id --- this shouldn't be used or needed at all because of the way the table is structured
+function addBuyinPhoto(user_id, group_id, photo) {
   return db("group_participants")
-    .where({ user_id: id })
+    .where({ user_id: user_id, group_id: group_id })
     .insert({ buyin_proof: photo });
 }
 
-function deleteBuyinPhoto(id) {
+// delete buyin_proof -- needs user_id and group_id
+function deleteBuyinPhoto(user_id, group_id) {
   return db("group_participants")
-    .where({ user_id: id })
+    .where({ user_id: user_id, group_id: group_id })
     .select("buyin_proof")
     .update({ buyin_proof: "buyin photo does not exist" });
+}
+
+// get user_ids by group_id
+
+function getUsersByGroupId(group_id) {
+  return db("group_participants").where({ group_id: group_id });
 }

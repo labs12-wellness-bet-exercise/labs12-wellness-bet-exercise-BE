@@ -56,10 +56,10 @@ router.post("/", async (req, res) => {
     });
 });
 
-// get proof of buyin
+// get proof of buyin by user_id and group_id
 
-router.get("/buyinproof/:id", (req, res) => {
-  db.getBuyinPhoto(req.params.id)
+router.get("/buyinproof/:user_id/:group_id", (req, res) => {
+  db.getBuyinPhoto(req.params.user_id, req.params.group_id)
     .then(buyin_proof => {
       res.status(200).json(buyin_proof);
     })
@@ -71,22 +71,29 @@ router.get("/buyinproof/:id", (req, res) => {
 });
 
 // add proof of buyin
-//Needs to be a put. The field already exists on a participant, it's just null
+//Needs to be a put. The field already exists on a participant, it's just null -- requires user_id and group_id
+router.put(
+  "/buyinproof/:user_id/:group_id",
+  upload.single("buyin_proof"),
+  (req, res) => {
+    console.log(req.file);
+    db.addPaymentPhoto(
+      req.params.user_id,
+      req.params.group_id,
+      req.body.buyin_proof
+    )
+      .then(() => {
+        res.status(200).json({ message: "Photo Successfully Uploaded" });
+      })
+      .catch(error => {
+        res.status(500).json({ message: "nooooo" });
+      });
+  }
+);
 
-router.put("/buyinproof/:id", upload.single("buyin_proof"), (req, res) => {
-  console.log(req.file);
-
-  db.addPaymentPhoto(req.params.id, req.body.buyin_proof)
-    .then(() => {
-      res.status(200).json({ message: "Photo Successfully Uploaded" });
-    })
-    .catch(error => {
-      res.status(500).json({ message: "nooooo" });
-    });
-});
-
-router.put("/buyinproof/:id/delete", (req, res) => {
-  db.deleteBuyinPhoto(req.params.id)
+// PUT to remove buyin_proof by user_id and group_id
+router.put("/buyinproof/delete/:user_id/:group_id", (req, res) => {
+  db.deleteBuyinPhoto(req.params.user_id, req.params.group_id)
     .then(deleted => {
       res.status(200).json({ message: "proof of buyin deleted", deleted });
     })
@@ -94,5 +101,22 @@ router.put("/buyinproof/:id/delete", (req, res) => {
       res.status(500).json(error);
     });
 });
+
+// GET participants by Group ID
+
+router.get("/members/:group_id", (req, res) => {
+  db.getUsersByGroupId(req.params.group_id)
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Could not retrieve users of this group",
+        error: error
+      });
+    });
+});
+
+// GET
 
 module.exports = router;
