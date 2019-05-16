@@ -74,6 +74,17 @@
 ## Group Participants Endpoints
 
 - `.post` to `/api/participants/` adds a group participant to the group_participants table. It requires a group_id and a user_id.
+- `.get` to `/api/participants/` returns an array of the whole group participants table.
+- `.get` to `/api/participants/:group_participants_id` returns the record for a group_participant buy their group_participants_id.
+- `.get` to `/api/participants/members/:group_id` returns all the participants in a group.
+- `.get` to `/api/participants/member/:user_id/:group_id` returns the group_participant record by user_id and group_id.
+
+- `.get` to `/api/participants/paid/:user_id/:group_id` returns the paid status of a user in a specific group.
+- `.put` to `/api/participants/paid/:user_id/:group_id/:paid` updates the paid status. In the params, put the paid status that you want it to update to. For example: `/api/participants/paid/1/1/true` would update the paid status of the User with user_id 1 in the group with group_id 1 to true.
+
+- `.put` to `/api/buyinproof/:user_id/:group_id` updates OR adds the buyin_proof by user_id and group_id. It is null on the table if the record does not exist.
+- `.put` to `/api/buyinproof/delete/:user_id/group_id` updates the table to change the buyin_proof back to null by user_id and group_id.
+- `.get` to `/api/participants/buyinproof/:user_id/:group_id` returns the buyin_proof of a particular user in a group.
 
 ## Groups Listed By User_ID Endpoint
 

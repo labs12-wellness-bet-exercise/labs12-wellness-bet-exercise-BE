@@ -30,6 +30,28 @@ router.get("/", (req, res) => {
     });
 });
 
+// GET group_participant by user_id and group_id
+
+router.get("/member/:user_id/:group_id", (req, res) => {
+  db.findByUserGroupId(req.params.user_id, req.params.group_id)
+    .then(member => {
+      if (member) {
+        res.status(200).json(member);
+      } else
+        res.status(404).json({
+          message: `The member with the user_id ${
+            req.params.user_id
+          } and the group_id ${req.params.group_id} cannot be found`
+        });
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: `That member cannot be retrieved`,
+        error
+      });
+    });
+});
+
 // GET group by group_participants_id
 router.get("/:group_participants_id", (req, res) => {
   const id = req.params.group_participants_id;
