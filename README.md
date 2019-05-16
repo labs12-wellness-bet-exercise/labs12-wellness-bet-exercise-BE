@@ -4,7 +4,7 @@
 
 | name of field | data type |                                         notes |
 | ------------- | :-------: | --------------------------------------------: |
-| id            |  integer  |                                auto-generated |
+| user_id       |  integer  |                                auto-generated |
 | display_name  |  varchar  |                          character limit: 255 |
 | google_uuid   |  varchar  | this is the connection with firebase oauth db |
 | email         |  varchar  |                          character limit: 255 |
@@ -19,14 +19,13 @@
 
 ## group_participants table
 
-| name of field |   data type    |                                         notes |
-| ------------- | :------------: | --------------------------------------------: |
-| id            |    integer     |                                auto-generated |
-| user_id       |    integer     |  foreign key referring to id on 'users' table |
-| group_id      |    integer     | foreign key referring to id on 'groups' table |
-| paid          |    boolean     |                             defaults to false |
-| admin         |    boolean     |                             defaults to false |
-| venmoPhoto    | string/varchar |                          character limit: 255 |
+| name of field         |   data type    |                                               notes |
+| --------------------- | :------------: | --------------------------------------------------: |
+| group_participants_id |    integer     |                                      auto-generated |
+| user_id               |    integer     |   foreign key referring to user_id on 'users' table |
+| group_id              |    integer     | foreign key referring to group_id on 'groups' table |
+| paid                  |    boolean     |                                   defaults to false |
+| buyin_proof           | string/varchar |                                character limit: 255 |
 
 ## groups table
 
