@@ -16,7 +16,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get("/", (req, res) => {
-
   db.find()
     .then(groups => {
       res.status(200).json(groups);
@@ -70,11 +69,9 @@ router.post("/", async (req, res) => {
     try {
       const groupId = await db.insert(group);
       console.log(groupId);
-      const newGroup = await db.findById(groupId.id);
-      console.log(newGroup);
       res.status(201).json({
         message: "Congratulations. Your group was successfully added.",
-        newGroup
+        groupId
       });
     } catch (error) {
       res.status(500).json({
@@ -121,7 +118,6 @@ router.get("/groupphoto/:id", (req, res) => {
 });
 
 // change group photo
-
 
 router.put("/groupphoto/:id", upload.single("group_photo"), (req, res) => {
   db.addGroupPhoto(req.params.id, req.body.group_photo)
