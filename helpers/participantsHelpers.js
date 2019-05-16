@@ -10,7 +10,9 @@ module.exports = {
   addBuyinPhoto,
   deleteBuyinPhoto,
   addPaymentPhoto,
-  getUsersByGroupId
+  getUsersByGroupId,
+  getPaidStatus,
+  updatePaidStatus
 };
 
 // returns array of group participants
@@ -67,7 +69,7 @@ function addBuyinPhoto(user_id, group_id, photo) {
     .insert({ buyin_proof: photo });
 }
 
-// delete buyin_proof -- needs user_id and group_id
+// delete buyin_proof -- needs user_id and group_id -- actually for use with PUT request
 function deleteBuyinPhoto(user_id, group_id) {
   return db("group_participants")
     .where({ user_id: user_id, group_id: group_id })
@@ -79,4 +81,27 @@ function deleteBuyinPhoto(user_id, group_id) {
 
 function getUsersByGroupId(group_id) {
   return db("group_participants").where({ group_id: group_id });
+}
+
+// get paid status by user_id and group_id
+
+function getPaidStatus(user_id, group_id) {
+  return db("group_participants")
+    .where({
+      user_id: user_id,
+      group_id: group_id
+    })
+    .select("paid");
+}
+
+// update paid status by user_id and group_id -- also expects paidStatus
+
+function updatePaidStatus(user_id, group_id, paid) {
+  return db("group_participants")
+    .where({
+      user_id: user_id,
+      group_id: group_id
+    })
+    .select("paid")
+    .update({ paid: paid });
 }

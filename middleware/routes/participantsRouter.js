@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+// GET all participants of all groups
 router.get("/", (req, res) => {
   db.find()
     .then(participants => {
@@ -29,8 +30,9 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
-  const id = req.params.id;
+// GET group by group_participants_id
+router.get("/:group_participants_id", (req, res) => {
+  const id = req.params.group_participants_id;
   db.findById(id)
     .then(participant => {
       res.status(200).json(participant);
@@ -42,7 +44,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// post request to add a user to a group.
+// POST request to add a user to a group.
 //expects an object with user_id and group_id
 router.post("/", async (req, res) => {
   db.insert(req.body)
@@ -56,7 +58,7 @@ router.post("/", async (req, res) => {
     });
 });
 
-// get proof of buyin by user_id and group_id
+// GET proof of buyin by user_id and group_id
 
 router.get("/buyinproof/:user_id/:group_id", (req, res) => {
   db.getBuyinPhoto(req.params.user_id, req.params.group_id)
@@ -70,7 +72,7 @@ router.get("/buyinproof/:user_id/:group_id", (req, res) => {
     });
 });
 
-// add proof of buyin
+// PUT -- add proof of buyin
 //Needs to be a put. The field already exists on a participant, it's just null -- requires user_id and group_id
 router.put(
   "/buyinproof/:user_id/:group_id",
@@ -117,6 +119,36 @@ router.get("/members/:group_id", (req, res) => {
     });
 });
 
-// GET
+// GET paid status by user_id and group_id
+router.get("/paid/:user_id/:group_id", (req, res) => {
+  db.getPaidStatus(req.params.user_id, req.params.group_id)
+    .then(paidStatus => {
+      res.status(200).json(paidStatus);
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Could not get paid status of member",
+        error: error
+      });
+    });
+});
+
+// PUT paid status by user_id and group_id -- also needs what you want to change paid to in the parameters
+// Example: /paid/1/2/false ---> this would update the user_id 1 in group_id 2's paid status to false
+router.put("/paid/:user_id/:group_id/:paid", (req, res) => {
+  db.updatePaidStatus(req.params.user_id, req.params.group_id, req.params.paid)
+    .then(paidStatus => {
+      res.status(200).json({
+        message: "You successfully updated the paid status",
+        paid: paidStatus
+      });
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "We cannot update the paid status",
+        error: error
+      });
+    });
+});
 
 module.exports = router;
