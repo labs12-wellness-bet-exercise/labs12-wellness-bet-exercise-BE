@@ -88,3 +88,7 @@
 ## Groups Listed By User_ID Endpoint
 
 - `.get` to `/api/usergroups/:id` gets all of the groups associated with the user id.
+
+## Users Listed By group_id Endpoint
+
+- `.get` to `/api/usergroups/members/:group_id` gets all the users associated with a group_id.
