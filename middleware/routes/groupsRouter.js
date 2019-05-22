@@ -67,7 +67,7 @@ router.post("/", async (req, res) => {
 
   async function createGroup() {
     try {
-      const groupId = await db.insert(group).returning(["group_id"]);
+      const groupId = await db.insert(group);
       console.log(groupId);
       res.status(201).json({
         message: "Congratulations. Your group was successfully added.",
