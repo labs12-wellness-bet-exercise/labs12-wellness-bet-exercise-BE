@@ -43,7 +43,7 @@ function getGroupParticipants(group_id) {
 function insert(group) {
   return db("groups")
     .insert(group)
-    .returning(["group_id"])
+    .returning("group_id")
     .then(ids => ({ id: ids[0] }));
 }
 
