@@ -71,7 +71,7 @@ router.post("/", async (req, res) => {
       console.log(groupId);
       res.status(201).json({
         message: "Congratulations. Your group was successfully added.",
-        groupId
+        group_id: groupId.id
       });
     } catch (error) {
       res.status(500).json({
@@ -231,3 +231,5 @@ router.get("/groupinfo/:id", (req, res) => {
 });
 
 module.exports = router;
+
+//hey, it's me lyd

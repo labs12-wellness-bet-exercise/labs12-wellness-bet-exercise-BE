@@ -43,6 +43,7 @@ function getGroupParticipants(group_id) {
 function insert(group) {
   return db("groups")
     .insert(group)
+    .returning("group_id")
     .then(ids => ({ id: ids[0] }));
 }
 
@@ -127,7 +128,6 @@ function getJoinCode(id) {
     .where({ group_id: id })
     .select("join_code");
 }
-
 
 // Group info helper for selecting relevant info
 function getGroupInfo(id) {
