@@ -1,6 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../../helpers/userHelpers");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./data/uploads/profilePhotos");
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage })
 
 router.get("/", (req, res) => {
   db.find()
@@ -52,6 +64,20 @@ router.get("/userId/:google_uuid", (req, res) => {
         code: error.code
       });
     });
-});
+}); 
+
+// PUT update profile photo 
+
+router.put("/profilepic/:user_id", upload.single("profilePhoto"), (req, res) => {
+  db.updateProfilePic(req.params.user_id, req.body.profilePhoto)
+  .then(() => {
+    res.status(200).json({message: "Profile photo successfully changed"})
+  })
+  .catch(error => {
+    res.status(500).json(error);
+  })
+})
+
+
 
 module.exports = router;
