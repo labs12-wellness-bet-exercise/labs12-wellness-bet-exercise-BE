@@ -6,7 +6,8 @@ module.exports = {
   insert,
   update,
   remove,
-  getUserIdByGoogleId
+  getUserIdByGoogleId, 
+  updateProfilePic
 };
 
 function find() {
@@ -41,4 +42,11 @@ function getUserIdByGoogleId(uuid) {
       google_uuid: uuid
     })
     .select("user_id");
+}
+
+function updateProfilePic(user_id, photo) {
+  return db("users")
+  .where({
+    user_id: user_id
+  }).select("profilePhoto").update({profilePhoto: photo})
 }
